@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ctv.com.app.common.dao.BaseDao">
+	<resultMap type="publisherBean" id="publisherObject">
+		<result property="id" column="publisher_id"/>
+		<result property="name" column="name"/>
+		<result property="address" column="adress"/>
+		<result property="phoneNumber" column="phone_number"/>
+		<result property="email" column="email"/>
+	</resultMap>
+	<select id="selectPublisherById" parameterType="publisherBean" resultMap="publisherObject">
+		SELECT
+			publisher_id,
+			name,
+			address,
+			phone_number,
+			email
+		FROM
+			publisher
+		WHERE
+			publisher_id = #{id}
+		AND used_flag = '1'
+	</select>
+	<insert id="insertPublisher" parameterType="publisherBean">
+		INSERT INTO publisher (publisher_id, NAME)
+		VALUES
+			(#{id}, #{name})
+	</insert>
+</mapper>
